@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚡ Number Classification Exam Cheat Sheet</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .page-wrapper {
+            display: flex;
+            min-height: 100vh;
+        }
+        
+        .sidebar {
+            width: 280px;
+            background: linear-gradient(to bottom, #2c3e50, #34495e);
+            color: white;
+            padding: 30px 20px;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            box-shadow: 4px 0 10px rgba(0,0,0,0.1);
+        }
+        
+        .sidebar h2 {
+            color: #3498db;
+            font-size: 1.3em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #3498db;
+        }
+        
+        .sidebar nav ul {
+            list-style: none;
+        }
+        
+        .sidebar nav ul li {
+            margin-bottom: 12px;
+        }
+        
+        .sidebar nav ul li a {
+            color: #ecf0f1;
+            text-decoration: none;
+            display: block;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-size: 0.95em;
+        }
+        
+        .sidebar nav ul li a:hover {
+            background: #3498db;
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .sidebar nav ul li a.active {
+            background: #3498db;
+            color: white;
+        }
+        
+        .sidebar-footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #546e7a;
+            font-size: 0.85em;
+            color: #95a5a6;
+        }
+        
+        .main-content {
+            margin-left: 280px;
+            flex: 1;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            color: #667eea;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        h3 {
+            color: #764ba2;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+            font-size: 1.5em;
+            scroll-margin-top: 20px;
+        }
+        
+        h4 {
+            color: #667eea;
+            margin-top: 20px;
+            margin-bottom: 12px;
+            font-size: 1.2em;
+        }
+        
+        ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        li {
+            margin-bottom: 12px;
+        }
+        
+        strong {
+            color: #764ba2;
+        }
+        
+        em {
+            color: #667eea;
+            font-style: normal;
+            font-weight: 600;
+        }
+        
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #667eea;
+            color: white;
+            font-weight: bold;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .warning {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .example {
+            background-color: #e7f3ff;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .strategy-box {
+            background-color: #f0f3ff;
+            border: 2px solid #667eea;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .trap-box {
+            background-color: #ffebee;
+            border-left: 4px solid #e74c3c;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .trap-title {
+            color: #e74c3c;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .verdict {
+            color: #16a085;
+            font-weight: bold;
+        }
+        
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .emoji {
+            font-size: 1.2em;
+        }
+        
+        .nested-indent {
+            margin-left: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                position: relative;
+                height: auto;
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+            
+            .container {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <aside class="sidebar">
+            <h2>📚 Quick Navigation</h2>
+            <nav>
+                <ul>
+                    <li><a href="#section-1" class="active">1. Snapshot Hierarchy</a></li>
+                    <li><a href="#section-2">2. Speed Identification</a></li>
+                    <li><a href="#section-3">3. MCQ Elimination</a></li>
+                    <li><a href="#section-4">4. Properties Table</a></li>
+                    <li><a href="#section-5">5. Trigger Words</a></li>
+                    <li><a href="#section-6">6. Exam Traps ⚠️</a></li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <p><strong>Symbol Chain</strong></p>
+                <p>\(\mathbb{N} \subset \mathbb{W} \subset \mathbb{Z} \subset \mathbb{Q} \subset \mathbb{R}\)</p>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <div class="container">
+                <h1>⚡ Number Classification Exam Cheat Sheet</h1>
+                
+                <h3 id="section-1">1. The Snapshot Hierarchy</h3>
+                <ul>
+                    <li><strong>Concept:</strong> Numbers are nested like boxes. If a number belongs to a smaller box, it automatically belongs to all bigger boxes around it.</li>
+                    <li><strong>The Symbol Chain:</strong> \(\mathbb{N} \subset \mathbb{W} \subset \mathbb{Z} \subset \mathbb{Q} \subset \mathbb{R}\)
+                        <ul class="nested-indent">
+                            <li>\(\mathbb{N}\) (Natural): \(\{1, 2, 3 \dots\}\)</li>
+                            <li>\(\mathbb{W}\) (Whole): \(\{0, 1, 2 \dots\}\)</li>
+                            <li>\(\mathbb{Z}\) (Integer): \(\{\dots -1, 0, 1 \dots\}\)</li>
+                            <li>\(\mathbb{Q}\) (Rational): Fractions, terminating or repeating decimals.</li>
+                            <li>\(\mathbb{I}\) (Irrational): Non-terminating, non-repeating decimals (\(\pi, \sqrt{2}\)).</li>
+                            <li>\(\mathbb{R}\) (Real): All of the above.</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <h3 id="section-2">2. Speed-Identification Shortcuts</h3>
+                
+                <h4>Rational vs. Irrational (The "Pattern Test"):</h4>
+                <ul>
+                    <li><strong>Rational (\(\mathbb{Q}\)):</strong> Look for a <span class="highlight">End</span> or a <span class="highlight">Pattern</span>.
+                        <ul class="nested-indent">
+                            <li>\(0.5\) (Ends) \(\rightarrow\) Rational.</li>
+                            <li>\(0.333\dots\) (Pattern) \(\rightarrow\) Rational.</li>
+                            <li>\(\sqrt{16}\) (Perfect Square) \(\rightarrow\) Rational (4).</li>
+                        </ul>
+                    </li>
+                    <li><strong>Irrational (\(\mathbb{I}\)):</strong> Look for <span class="highlight">Chaos</span>.
+                        <ul class="nested-indent">
+                            <li>\(0.101101110\dots\) (No repeating pattern) \(\rightarrow\) Irrational.</li>
+                            <li>\(\pi, e\) \(\rightarrow\) Irrational.</li>
+                            <li>\(\sqrt{2}, \sqrt{3}, \sqrt{5}\) (Non-perfect roots) \(\rightarrow\) Irrational.</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <h4>Prime Number Check (The "6n Rule"):</h4>
+                <ul>
+                    <li><strong>Rule:</strong> All primes greater than 3 can be written in the form \(6n - 1\) or \(6n + 1\).</li>
+                    <li><strong>Usage:</strong> If a number cannot be written this way, it is definitely not prime.</li>
+                    <li><strong>Warning:</strong> If it can be written this way, it might be prime (but check further).</li>
+                </ul>
+                <div class="example">
+                    <strong>Example:</strong> Is 35 prime? \(35 = 6(6) - 1\). Fits the rule, but \(35 = 5 \times 7\). So, not prime. (Use as a quick filter, not a guarantee).
+                </div>
+
+                <h4>Co-Prime Identification:</h4>
+                <ul>
+                    <li>Two numbers are <strong>Co-Prime</strong> if their HCF is 1.</li>
+                    <li><strong>Shortcut:</strong> Any two consecutive integers are always co-prime (e.g., 20 and 21).</li>
+                </ul>
+
+                <h3 id="section-3">3. MCQ Elimination Tactics (True/False Logic)</h3>
+                
+                <div class="strategy-box">
+                    <p><strong>Strategy:</strong> Use the "Inner Circle" logic.</p>
+                    <ul>
+                        <li><strong>Statement:</strong> "All [Small Set] are [Big Set]." \(\rightarrow\) <span class="highlight">TRUE</span>.
+                            <ul class="nested-indent">
+                                <li><em>Example:</em> "All Integers are Rational." (True, \(\mathbb{Z}\) is inside \(\mathbb{Q}\)).</li>
+                            </ul>
+                        </li>
+                        <li><strong>Statement:</strong> "All [Big Set] are [Small Set]." \(\rightarrow\) <span class="highlight">FALSE</span>.
+                            <ul class="nested-indent">
+                                <li><em>Example:</em> "All Real numbers are Integers." (False, \(\mathbb{R}\) is outside \(\mathbb{Z}\)).</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <h4>Logical Traps to Exploit:</h4>
+                <ul>
+                    <li>If an option says "Positive Numbers," verify if it excludes 0.</li>
+                    <li>If an option says "Non-Negative Numbers," it includes 0.</li>
+                </ul>
+
+                <h3 id="section-4">4. Essential Properties Table</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Key Property</th>
+                            <th>Examples</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Prime</strong></td>
+                            <td>Exactly 2 factors (1 and itself).</td>
+                            <td>\(2, 3, 5, 7, 11, 13, 17, 19\)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Composite</strong></td>
+                            <td>More than 2 factors.</td>
+                            <td>\(4, 6, 8, 9, 10, 12\)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Even</strong></td>
+                            <td>Divisible by 2 (\(2k\)).</td>
+                            <td>\(\dots -4, -2, 0, 2, 4 \dots\)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Odd</strong></td>
+                            <td>Not divisible by 2 (\(2k+1\)).</td>
+                            <td>\(\dots -3, -1, 1, 3, 5 \dots\)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Perfect</strong></td>
+                            <td>Sum of factors (excluding itself) = Number.</td>
+                            <td>\(6\) (\(1+2+3\)), \(28\) (\(1+2+4+7+14\))</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3 id="section-5">5. Word Problem "Trigger Words"</h3>
+                <ul>
+                    <li><strong>"Distinct Prime Factors":</strong> Count types of primes, not total primes (e.g., \(12 = 2 \times 2 \times 3\) has 2 distinct primes: 2 and 3).</li>
+                    <li><strong>"Consecutive Integers":</strong> Write as \(x, x+1, x+2\).</li>
+                    <li><strong>"Non-negative Integers":</strong> Remember to start checking from 0, not 1.</li>
+                    <li><strong>"Reciprocal":</strong> The flip of the number (\(x \rightarrow 1/x\)). Zero has no reciprocal.</li>
+                </ul>
+
+                <h3 id="section-6">6. The "Exam Trap" Alert <span class="emoji">⚠️</span></h3>
+                
+                <div class="trap-box">
+                    <div class="trap-title">Trap 1: "1 is a Prime Number."</div>
+                    <p><span class="verdict">Verdict: FALSE.</span> 1 is a Unit (neither prime nor composite). The smallest prime is 2.</p>
+                </div>
+
+                <div class="trap-box">
+                    <div class="trap-title">Trap 2: "0 is neither Positive nor Negative."</div>
+                    <p><span class="verdict">Verdict: TRUE.</span> Zero is neutral.</p>
+                </div>
+
+                <div class="trap-box">
+                    <div class="trap-title">Trap 3: "0 is an Odd number."</div>
+                    <p><span class="verdict">Verdict: FALSE.</span> 0 is divisible by 2 (\(0 \div 2 = 0\)). Therefore, 0 is Even.</p>
+                </div>
+
+                <div class="trap-box">
+                    <div class="trap-title">Trap 4: \(\sqrt{x^2} = \pm x\).</div>
+                    <p><span class="verdict">Verdict: FALSE</span> in arithmetic contexts. The radical symbol \(\sqrt{\dots}\) implies the principal (positive) root only. \(\sqrt{(-3)^2} = \sqrt{9} = 3\).</p>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script>
+        // Smooth scrolling for sidebar links
+        document.querySelectorAll('.sidebar a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remove active class from all links
+                document.querySelectorAll('.sidebar a').forEach(link => {
+                    link.classList.remove('active');
+                });
+                
+                // Add active class to clicked link
+                this.classList.add('active');
+                
+                // Smooth scroll to target
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Update active link on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('h3[id]');
+            let currentSection = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (window.pageYOffset >= sectionTop - 150) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            
+            document.querySelectorAll('.sidebar a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

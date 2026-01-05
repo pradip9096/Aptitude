@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚡ Square Root Exam Cheat Sheet</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .page-wrapper {
+            display: flex;
+            min-height: 100vh;
+        }
+        
+        .sidebar {
+            width: 280px;
+            background: linear-gradient(to bottom, #2c3e50, #34495e);
+            color: white;
+            padding: 30px 20px;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            box-shadow: 4px 0 10px rgba(0,0,0,0.1);
+        }
+        
+        .sidebar h2 {
+            color: #3498db;
+            font-size: 1.3em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #3498db;
+        }
+        
+        .sidebar nav ul {
+            list-style: none;
+        }
+        
+        .sidebar nav ul li {
+            margin-bottom: 12px;
+        }
+        
+        .sidebar nav ul li a {
+            color: #ecf0f1;
+            text-decoration: none;
+            display: block;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-size: 0.95em;
+        }
+        
+        .sidebar nav ul li a:hover {
+            background: #3498db;
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .sidebar nav ul li a.active {
+            background: #3498db;
+            color: white;
+        }
+        
+        .sidebar-footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #546e7a;
+            font-size: 0.85em;
+            color: #95a5a6;
+        }
+        
+        .main-content {
+            margin-left: 280px;
+            flex: 1;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            color: #667eea;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        h3 {
+            color: #764ba2;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+            font-size: 1.5em;
+            scroll-margin-top: 20px;
+        }
+        
+        h4 {
+            color: #667eea;
+            margin-top: 20px;
+            margin-bottom: 12px;
+            font-size: 1.2em;
+        }
+        
+        ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        ol {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        li {
+            margin-bottom: 12px;
+        }
+        
+        strong {
+            color: #764ba2;
+        }
+        
+        em {
+            color: #667eea;
+            font-style: normal;
+            font-weight: 600;
+        }
+        
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #667eea;
+            color: white;
+            font-weight: bold;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .example {
+            background-color: #e7f3ff;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .strategy-box {
+            background-color: #f0f3ff;
+            border: 2px solid #667eea;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .trap-box {
+            background-color: #ffebee;
+            border-left: 4px solid #e74c3c;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .trap-title {
+            color: #e74c3c;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .step {
+            margin-left: 20px;
+            color: #555;
+        }
+        
+        .key-values {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border: 2px solid #dee2e6;
+        }
+        
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .emoji {
+            font-size: 1.2em;
+        }
+        
+        .nested-indent {
+            margin-left: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                position: relative;
+                height: auto;
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+            
+            .container {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <aside class="sidebar">
+            <h2>📚 Quick Navigation</h2>
+            <nav>
+                <ul>
+                    <li><a href="#section-1" class="active">1. Snapshot Definition</a></li>
+                    <li><a href="#section-2">2. Speed-Math Shortcuts</a></li>
+                    <li><a href="#section-3">3. MCQ Elimination</a></li>
+                    <li><a href="#section-4">4. Essential Formulas</a></li>
+                    <li><a href="#section-5">5. Trigger Words</a></li>
+                    <li><a href="#section-6">6. Exam Traps ⚠️</a></li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <p><strong>Quick Reference</strong></p>
+                <p>\(\sqrt{2} \approx 1.414\)</p>
+                <p>\(\sqrt{3} \approx 1.732\)</p>
+                <p>\(\sqrt{5} \approx 2.236\)</p>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <div class="container">
+                <h1>⚡ Square Root Exam Cheat Sheet</h1>
+                
+                <h3 id="section-1">1. The Snapshot Definition</h3>
+                <ul>
+                    <li><strong>Concept:</strong> Finding the "side length" of a square area.</li>
+                    <li><strong>The Symbol:</strong> \(\sqrt{x}\) always refers to the positive (principal) root.</li>
+                    <li><strong>Domain:</strong> For real numbers, the radicand (number inside) must be non-negative (\(\ge 0\)).</li>
+                    <li><strong>Inequality Rule:</strong> If \(x > 1\), then \(\sqrt{x} < x\). If \(0 < x < 1\), then \(\sqrt{x} > x\).
+                        <ul class="nested-indent">
+                            <li><em>Example:</em> \(\sqrt{0.25} = 0.5\) (The root is bigger than the original number).</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <h3 id="section-2">2. Speed-Math Shortcuts (Approximation)</h3>
+                
+                <h4>The "Linear Approximation" Formula:</h4>
+                <p>Use this to find the root of a non-perfect square quickly.</p>
+                <p><strong>Formula:</strong> \(\sqrt{N} \approx \sqrt{P} + \frac{N - P}{2 \times \sqrt{P}}\)</p>
+                <p><strong>Where:</strong> \(N\) is your number, and \(P\) is the closest perfect square.</p>
+                
+                <div class="example">
+                    <h4>Example: Find \(\sqrt{50}\)</h4>
+                    <div class="step">• Closest square \(P = 49\) (Root is 7).</div>
+                    <div class="step">• \(\sqrt{50} \approx 7 + \frac{50 - 49}{2 \times 7} = 7 + \frac{1}{14} \approx \mathbf{7.07}\).</div>
+                </div>
+
+                <h4>Prime Factorization (Simplifying Roots):</h4>
+                <p><strong>Technique:</strong> "Jailbreak" pairs of numbers. For every pair inside, one escapes outside.</p>
+                
+                <div class="example">
+                    <h4>Example: \(\sqrt{72}\)</h4>
+                    <div class="step">• \(72 = 36 \times 2 = (6 \times 6) \times 2\).</div>
+                    <div class="step">• The pair of 6s escapes → <strong>\(6\sqrt{2}\)</strong>.</div>
+                </div>
+
+                <h4>Memorize these Roots (The "Big 3"):</h4>
+                <div class="key-values">
+                    <ul>
+                        <li>\(\sqrt{2} \approx 1.414\)</li>
+                        <li>\(\sqrt{3} \approx 1.732\)</li>
+                        <li>\(\sqrt{5} \approx 2.236\)</li>
+                    </ul>
+                </div>
+
+                <h3 id="section-3">3. MCQ Elimination Tactics (Verification)</h3>
+                
+                <div class="strategy-box">
+                    <p><strong>Strategy:</strong> It is usually faster to square the options than to root the question.</p>
+                </div>
+
+                <h4>1. The "Unit Digit" Reverse Check:</h4>
+                <p>Look at the last digit of the Question (\(Q\)) and the Option (\(O\)).</p>
+                <ul>
+                    <li>If \(Q\) ends in <strong>1</strong>, \(O\) must end in <strong>1 or 9</strong>.</li>
+                    <li>If \(Q\) ends in <strong>4</strong>, \(O\) must end in <strong>2 or 8</strong>.</li>
+                    <li>If \(Q\) ends in <strong>5</strong>, \(O\) must end in <strong>5</strong>.</li>
+                    <li>If \(Q\) ends in <strong>6</strong>, \(O\) must end in <strong>4 or 6</strong>.</li>
+                    <li>If \(Q\) ends in <strong>9</strong>, \(O\) must end in <strong>3 or 7</strong>.</li>
+                </ul>
+                
+                <div class="example">
+                    <h4>Example: Which is \(\sqrt{5329}\)? Options: A) 72, B) 73, C) 77, D) 78</h4>
+                    <div class="step"><strong>Check:</strong> Question ends in 9. Option must end in 3 or 7. <strong>Eliminate A and D.</strong></div>
+                </div>
+
+                <h4>2. Range Estimation:</h4>
+                <div class="example">
+                    <h4>Task: \(\sqrt{1500}\)</h4>
+                    <div class="step"><strong>Benchmarks:</strong> \(30^2 = 900\), \(40^2 = 1600\).</div>
+                    <div class="step"><strong>Analysis:</strong> 1500 is close to 1600, so the answer must be close to 40 (e.g., 38 or 39). Eliminate options like 32 or 45.</div>
+                </div>
+
+                <h4>3. Digital Root Check:</h4>
+                <ul>
+                    <li>Calculate digital root of the Question.</li>
+                    <li>Calculate digital root of the Option, then square it.</li>
+                    <li>They must match.</li>
+                </ul>
+
+                <h3 id="section-4">4. Essential Formulas & Rules</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Concept</th>
+                            <th>Rule/Formula</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Product Rule</strong></td>
+                            <td>\(\sqrt{a \times b} = \sqrt{a} \times \sqrt{b}\)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Quotient Rule</strong></td>
+                            <td>\(\sqrt{\frac{a}{b}} = \frac{\sqrt{a}}{\sqrt{b}}\)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Root of Exponent</strong></td>
+                            <td>\(\sqrt{x^n} = x^{n/2}\)<br>
+                            <small>Example: \(\sqrt{10^6} = 10^3 = 1000\).</small></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Nested Roots</strong></td>
+                            <td>\(\sqrt{x\sqrt{x\sqrt{x\dots}}} = x\)</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3 id="section-5">5. Word Problem "Trigger Words"</h3>
+                <p>If you see these phrases, you likely need a square root:</p>
+                <ul>
+                    <li>"Find the length of the <strong>side of a square</strong>..."</li>
+                    <li>"Find the <strong>diagonal</strong>..." (Pythagoras: \(c = \sqrt{a^2 + b^2}\))</li>
+                    <li>"Find the <strong>radius of a circle with Area \(A\)</strong>..." (\(r = \sqrt{A / \pi}\))</li>
+                    <li>"<strong>Time it takes to fall</strong>..." (Physics: \(t = \sqrt{2d/g}\))</li>
+                </ul>
+
+                <h3 id="section-6">6. The "Exam Trap" Alert <span class="emoji">⚠️</span></h3>
+                
+                <div class="trap-box">
+                    <div class="trap-title">Trap 1: The "Split Sum" Error.</div>
+                    <ul>
+                        <li><strong>Mistake:</strong> \(\sqrt{16 + 9} = 4 + 3 = 7\).</li>
+                        <li><strong>Fix:</strong> Add first! \(\sqrt{25} = 5\). Never split a root across a \(+\) or \(-\).</li>
+                    </ul>
+                </div>
+
+                <div class="trap-box">
+                    <div class="trap-title">Trap 2: Decimal Roots.</div>
+                    <ul>
+                        <li><strong>Mistake:</strong> \(\sqrt{0.9} = 0.3\).</li>
+                        <li><strong>Fix:</strong> \(0.3 \times 0.3 = 0.09\), not \(0.9\). Actually, \(\sqrt{0.9} \approx 0.95\).</li>
+                    </ul>
+                </div>
+
+                <div class="trap-box">
+                    <div class="trap-title">Trap 3: Confusing Units.</div>
+                    <ul>
+                        <li><strong>Fix:</strong> If Area is in \(cm^2\), the root (side length) is in \(cm\).</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script>
+        // Smooth scrolling for sidebar links
+        document.querySelectorAll('.sidebar a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remove active class from all links
+                document.querySelectorAll('.sidebar a').forEach(link => {
+                    link.classList.remove('active');
+                });
+                
+                // Add active class to clicked link
+                this.classList.add('active');
+                
+                // Smooth scroll to target
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Update active link on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('h3[id]');
+            let currentSection = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (window.pageYOffset >= sectionTop - 150) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            
+            document.querySelectorAll('.sidebar a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

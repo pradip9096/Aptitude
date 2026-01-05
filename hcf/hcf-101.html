@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📘 HCF 101: The Highest Common Factor</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: #2c3e50;
+            background: linear-gradient(to bottom, #f8f9fa, #e9ecef);
+        }
+        
+        .page-wrapper {
+            display: flex;
+            min-height: 100vh;
+        }
+        
+        .sidebar {
+            width: 280px;
+            background: linear-gradient(to bottom, #2c3e50, #34495e);
+            color: white;
+            padding: 30px 20px;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            box-shadow: 4px 0 10px rgba(0,0,0,0.1);
+        }
+        
+        .sidebar h2 {
+            color: #3498db;
+            font-size: 1.3em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #3498db;
+        }
+        
+        .sidebar nav ul {
+            list-style: none;
+        }
+        
+        .sidebar nav ul li {
+            margin-bottom: 12px;
+        }
+        
+        .sidebar nav ul li a {
+            color: #ecf0f1;
+            text-decoration: none;
+            display: block;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-size: 0.95em;
+        }
+        
+        .sidebar nav ul li a:hover {
+            background: #3498db;
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .sidebar nav ul li a.active {
+            background: #3498db;
+            color: white;
+        }
+        
+        .sidebar-footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #546e7a;
+            font-size: 0.85em;
+            color: #95a5a6;
+        }
+        
+        .main-content {
+            margin-left: 280px;
+            flex: 1;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 50px;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #1a5490;
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.5em;
+            border-bottom: 4px solid #1a5490;
+            padding-bottom: 20px;
+        }
+        
+        h2 {
+            color: #2874a6;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            border-left: 6px solid #3498db;
+            padding-left: 15px;
+            scroll-margin-top: 20px;
+        }
+        
+        h3 {
+            color: #34495e;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        
+        h4 {
+            color: #546e7a;
+            margin-top: 20px;
+            margin-bottom: 12px;
+            font-size: 1.1em;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        ul {
+            margin-left: 30px;
+            margin-bottom: 20px;
+        }
+        
+        ol {
+            margin-left: 30px;
+            margin-bottom: 20px;
+        }
+        
+        li {
+            margin-bottom: 12px;
+        }
+        
+        strong {
+            color: #c0392b;
+            font-weight: 600;
+        }
+        
+        .definition {
+            background: #e8f4f8;
+            border-left: 5px solid #3498db;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 5px;
+        }
+        
+        .analogy {
+            background: #fff9e6;
+            border-left: 5px solid #f39c12;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 5px;
+        }
+        
+        .insight {
+            background: #e8f8f5;
+            border-left: 5px solid #16a085;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 5px;
+        }
+        
+        .method-box {
+            background: #f4f6f7;
+            border: 2px solid #95a5a6;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        
+        .example {
+            background: #e7f3ff;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .properties-box {
+            background: #f0f3ff;
+            border: 2px solid #6c5ce7;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        
+        .misconception {
+            background: #ffeaa7;
+            border-left: 5px solid #fdcb6e;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .misconception-title {
+            color: #d63031;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .note {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.95em;
+        }
+        
+        .nested-indent {
+            margin-left: 30px;
+        }
+        
+        .step {
+            margin-left: 20px;
+            color: #555;
+        }
+        
+        code {
+            background: #ecf0f1;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #e74c3c;
+        }
+        
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                position: relative;
+                height: auto;
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+            
+            .container {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <aside class="sidebar">
+            <h2>📚 Contents</h2>
+            <nav>
+                <ul>
+                    <li><a href="#section-1" class="active">1. The Big Picture</a></li>
+                    <li><a href="#section-2">2. Core Terminology</a></li>
+                    <li><a href="#section-3">3. Logical Foundation</a></li>
+                    <li><a href="#section-4">4. Standard Procedures</a></li>
+                    <li><a href="#section-5">5. Properties and Rules</a></li>
+                    <li><a href="#section-6">6. Common Misconceptions</a></li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <p><strong>Quick Reference</strong></p>
+                <p>HCF = Largest common factor</p>
+                <p>Use lowest powers of primes</p>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <div class="container">
+                <h1>📘 HCF 101: The Highest Common Factor</h1>
+                
+                <h2 id="section-1">1. The Big Picture</h2>
+                
+                <div class="definition">
+                    <h3>Definition</h3>
+                    <p>The <strong>Highest Common Factor (HCF)</strong>, also known as the Greatest Common Divisor (GCD), is the largest positive integer that divides two or more numbers exactly, without leaving a remainder. It represents the largest "building block" that is shared by the numbers.</p>
+                </div>
+                
+                <div class="analogy">
+                    <h3>Real-World Analogy</h3>
+                    <p>Imagine you have two ribbons of different lengths:</p>
+                    <ul>
+                        <li>Ribbon A is 12 meters long.</li>
+                        <li>Ribbon B is 18 meters long.</li>
+                        <li>You want to cut both ribbons into smaller pieces of equal length without wasting any material.</li>
+                        <li>You could cut them into 1m pieces, 2m pieces, or 3m pieces. However, the largest possible length you can cut is 6 meters. This is the HCF.</li>
+                    </ul>
+                </div>
+                
+                <div class="insight">
+                    <h3>The "So What?"</h3>
+                    <p>The HCF is essential for simplification. It is used to reduce fractions to their lowest terms, organize items into equal groups, and determine the most efficient size for tiling a floor or cutting materials.</p>
+                </div>
+                
+                <h2 id="section-2">2. Core Terminology</h2>
+                
+                <p>To master HCF, you must distinguish between these terms:</p>
+                
+                <ul>
+                    <li><strong>Factor:</strong> A number that divides another number evenly (e.g., factors of 10 are 1, 2, 5, 10).</li>
+                    <li><strong>Common Factor:</strong> A number that appears in the factor lists of two different numbers.</li>
+                    <li><strong>Highest Common Factor:</strong> The largest number in that list of common factors.</li>
+                </ul>
+                
+                <h2 id="section-3">3. The Logical Foundation</h2>
+                
+                <p>The logic of HCF is based on <strong>shared components</strong>. Unlike multiples (which are infinite), factors are finite. You are breaking numbers down to find the largest shared component.</p>
+                
+                <ul>
+                    <li>Factors of 12: \(1, 2, 3, 4, \mathbf{6}, 12\)</li>
+                    <li>Factors of 18: \(1, 2, 3, \mathbf{6}, 9, 18\)</li>
+                    <li><strong>Intersection:</strong> The shared factors are 1, 2, 3, and 6.</li>
+                    <li><strong>Result:</strong> The "Highest" shared value is 6.</li>
+                </ul>
+                
+                <h2 id="section-4">4. Standard Procedures (The "How")</h2>
+                
+                <div class="method-box">
+                    <h3>Method A: Prime Factorization (The "Lowest Power" Rule)</h3>
+                    <p>This method is best for understanding the composition of the numbers.</p>
+                    <ol>
+                        <li>Break each number down into its prime factors.</li>
+                        <li>Identify only the prime numbers that appear in both lists.</li>
+                        <li>Assign each common prime the lowest power found in the sets.</li>
+                        <li>Multiply these lowest powers together.</li>
+                    </ol>
+                    
+                    <div class="example">
+                        <h4>Example: HCF of 24 and 36</h4>
+                        <ul>
+                            <li>\(24 = 2^3 \times 3^1\)</li>
+                            <li>\(36 = 2^2 \times 3^2\)</li>
+                            <li><strong>Step 1:</strong> Common primes are 2 and 3.</li>
+                            <li><strong>Step 2:</strong> Lowest power of 2 is \(2^2\). Lowest power of 3 is \(3^1\).</li>
+                            <li><strong>Step 3:</strong> \(2^2 \times 3^1 = 4 \times 3 = 12\).</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="method-box">
+                    <h3>Method B: The Long Division Method (Euclidean Algorithm)</h3>
+                    <p>This method is the most efficient for very large numbers where finding factors is difficult.</p>
+                    <ol>
+                        <li>Divide the larger number by the smaller number.</li>
+                        <li>Take the remainder from that division.</li>
+                        <li>Divide the previous divisor by this new remainder.</li>
+                        <li>Repeat until the remainder is 0. The last divisor used is the HCF.</li>
+                    </ol>
+                </div>
+                
+                <h2 id="section-5">5. Properties and Rules</h2>
+                
+                <div class="properties-box">
+                    <ul>
+                        <li><strong>The Boundary Rule:</strong> The HCF is always less than or equal to the smallest number in the set.</li>
+                        <li><strong>The Co-Prime Rule:</strong> If two numbers share no common factors (like 8 and 9), their HCF is always 1.</li>
+                        <li><strong>The Prime Rule:</strong> If \(P\) is a prime number, the HCF of \(P\) and any other number is either 1 or \(P\) (if \(P\) divides the other number).</li>
+                    </ul>
+                </div>
+                
+                <h2 id="section-6">6. Common Misconceptions</h2>
+                
+                <div class="misconception">
+                    <div class="misconception-title">Confusing HCF with LCM</div>
+                    <p>Remember that HCF leads to <strong>smaller</strong> numbers (factors), while LCM leads to larger numbers (multiples).</p>
+                </div>
+                
+                <div class="misconception">
+                    <div class="misconception-title">Missing the "Common" aspect</div>
+                    <p>Students sometimes list the largest factor of a single number (e.g., saying the HCF of 12 and 18 is 12, because 12 is the largest factor of 12).</p>
+                </div>
+                
+                <div class="misconception">
+                    <div class="misconception-title">Ignoring 1</div>
+                    <p>If no obvious factors exist, students sometimes say "there is no HCF." The answer is always 1 in these cases.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script>
+        // Smooth scrolling for sidebar links
+        document.querySelectorAll('.sidebar a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remove active class from all links
+                document.querySelectorAll('.sidebar a').forEach(link => {
+                    link.classList.remove('active');
+                });
+                
+                // Add active class to clicked link
+                this.classList.add('active');
+                
+                // Smooth scroll to target
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Update active link on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('h2[id]');
+            let currentSection = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (window.pageYOffset >= sectionTop - 150) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            
+            document.querySelectorAll('.sidebar a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

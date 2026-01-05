@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📘 Square Root 101: Reversing the Power</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: #2c3e50;
+            background: linear-gradient(to bottom, #f8f9fa, #e9ecef);
+        }
+        
+        .page-wrapper {
+            display: flex;
+            min-height: 100vh;
+        }
+        
+        .sidebar {
+            width: 280px;
+            background: linear-gradient(to bottom, #2c3e50, #34495e);
+            color: white;
+            padding: 30px 20px;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            box-shadow: 4px 0 10px rgba(0,0,0,0.1);
+        }
+        
+        .sidebar h2 {
+            color: #3498db;
+            font-size: 1.3em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #3498db;
+        }
+        
+        .sidebar nav ul {
+            list-style: none;
+        }
+        
+        .sidebar nav ul li {
+            margin-bottom: 12px;
+        }
+        
+        .sidebar nav ul li a {
+            color: #ecf0f1;
+            text-decoration: none;
+            display: block;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-size: 0.95em;
+        }
+        
+        .sidebar nav ul li a:hover {
+            background: #3498db;
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .sidebar nav ul li a.active {
+            background: #3498db;
+            color: white;
+        }
+        
+        .sidebar-footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #546e7a;
+            font-size: 0.85em;
+            color: #95a5a6;
+        }
+        
+        .main-content {
+            margin-left: 280px;
+            flex: 1;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 50px;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #1a5490;
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.5em;
+            border-bottom: 4px solid #1a5490;
+            padding-bottom: 20px;
+        }
+        
+        h2 {
+            color: #2874a6;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            border-left: 6px solid #3498db;
+            padding-left: 15px;
+            scroll-margin-top: 20px;
+        }
+        
+        h3 {
+            color: #34495e;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        
+        h4 {
+            color: #546e7a;
+            margin-top: 20px;
+            margin-bottom: 12px;
+            font-size: 1.1em;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        ul {
+            margin-left: 30px;
+            margin-bottom: 20px;
+        }
+        
+        ol {
+            margin-left: 30px;
+            margin-bottom: 20px;
+        }
+        
+        li {
+            margin-bottom: 12px;
+        }
+        
+        strong {
+            color: #c0392b;
+            font-weight: 600;
+        }
+        
+        .definition {
+            background: #e8f4f8;
+            border-left: 5px solid #3498db;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 5px;
+        }
+        
+        .analogy {
+            background: #fff9e6;
+            border-left: 5px solid #f39c12;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 5px;
+        }
+        
+        .insight {
+            background: #e8f8f5;
+            border-left: 5px solid #16a085;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 5px;
+        }
+        
+        .method-box {
+            background: #f4f6f7;
+            border: 2px solid #95a5a6;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        
+        .example {
+            background: #e7f3ff;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .properties-box {
+            background: #f0f3ff;
+            border: 2px solid #6c5ce7;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        
+        .misconception {
+            background: #ffeaa7;
+            border-left: 5px solid #fdcb6e;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .misconception-title {
+            color: #d63031;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .reality {
+            color: #00b894;
+            font-weight: bold;
+        }
+        
+        .note {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.95em;
+        }
+        
+        .nested-indent {
+            margin-left: 30px;
+        }
+        
+        .step {
+            margin-left: 20px;
+            color: #555;
+        }
+        
+        code {
+            background: #ecf0f1;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #e74c3c;
+        }
+        
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                position: relative;
+                height: auto;
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+            
+            .container {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <aside class="sidebar">
+            <h2>📚 Contents</h2>
+            <nav>
+                <ul>
+                    <li><a href="#section-1" class="active">1. The Big Picture</a></li>
+                    <li><a href="#section-2">2. Core Terminology</a></li>
+                    <li><a href="#section-3">3. Logical Foundation</a></li>
+                    <li><a href="#section-4">4. Standard Procedures</a></li>
+                    <li><a href="#section-5">5. Properties and Rules</a></li>
+                    <li><a href="#section-6">6. Common Misconceptions</a></li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <p><strong>Key Formula</strong></p>
+                <p>\(y^2 = x \Rightarrow y = \sqrt{x}\)</p>
+                <p>\(\sqrt{a \times b} = \sqrt{a} \times \sqrt{b}\)</p>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <div class="container">
+                <h1>📘 Square Root 101: Reversing the Power</h1>
+                
+                <h2 id="section-1">1. The Big Picture</h2>
+                
+                <div class="definition">
+                    <h3>Definition</h3>
+                    <p>The <strong>Square Root</strong> is the inverse operation of squaring a number. It asks the question: "Which number, when multiplied by itself, results in this value?" For any non-negative number \(x\), the square root is a value \(y\) such that \(y^2 = x\).</p>
+                </div>
+                
+                <div class="analogy">
+                    <h3>Real-World Analogy</h3>
+                    <p>Think of a square plot of land.</p>
+                    <ul>
+                        <li>You are told the total Area is 100 square meters.</li>
+                        <li>You need to build a fence along one side.</li>
+                        <li>To find the length of that fence, you must find the Square Root of 100.</li>
+                        <li>Since \(10 \times 10 = 100\), the side length is 10 meters.</li>
+                    </ul>
+                </div>
+                
+                <div class="insight">
+                    <h3>The "So What?"</h3>
+                    <p>Square roots are essential in geometry (Pythagorean theorem), statistics (Standard Deviation), and physics (calculating time, velocity, and energy). They allow us to work backward from a product to its source.</p>
+                </div>
+                
+                <h2 id="section-2">2. Core Terminology</h2>
+                
+                <p>To interpret square roots correctly, you must know the parts of the notation:</p>
+                
+                <ul>
+                    <li><strong>Radical Sign (\(\sqrt{\quad}\)):</strong> The symbol used to denote the square root operation.</li>
+                    <li><strong>Radicand:</strong> The number inside the radical sign. In \(\sqrt{25}\), 25 is the radicand.</li>
+                    <li><strong>Principal Square Root:</strong> The non-negative (positive) root. While mathematically \(5 \times 5 = 25\) and \((-5) \times (-5) = 25\), the symbol \(\sqrt{25}\) specifically refers to the positive result (5).</li>
+                </ul>
+                
+                <h2 id="section-3">3. The Logical Foundation</h2>
+                
+                <p>The logic of square roots is based on <strong>Inverse Functions</strong>. Just as subtraction undoes addition, and division undoes multiplication, finding a square root undoes the action of squaring.</p>
+                
+                <ul>
+                    <li><strong>Forward Action:</strong> Take 6 \(\rightarrow\) Square it \(\rightarrow\) Result is 36.</li>
+                    <li><strong>Reverse Action:</strong> Take 36 \(\rightarrow\) Apply Square Root \(\rightarrow\) Result is 6.</li>
+                    <li><strong>Geometric Limit:</strong> Because you cannot have a square with a negative side length, you cannot take the square root of a negative number within the real number system.</li>
+                </ul>
+                
+                <h2 id="section-4">4. Standard Procedures (The "How")</h2>
+                
+                <div class="method-box">
+                    <h3>Method A: Prime Factorization (For Perfect Squares)</h3>
+                    <p>This method breaks the number into pairs of identical factors.</p>
+                    <ol>
+                        <li>Find the prime factors of the radicand.</li>
+                        <li>Group identical prime factors into pairs.</li>
+                        <li>Take one number from each pair out of the radical.</li>
+                        <li>Multiply these numbers together.</li>
+                    </ol>
+                    
+                    <div class="example">
+                        <h4>Example: \(\sqrt{144}\)</h4>
+                        <ul>
+                            <li><strong>Factors:</strong> \(144 = 2 \times 2 \times 2 \times 2 \times 3 \times 3\)</li>
+                            <li><strong>Pairs:</strong> \((2 \times 2)\), \((2 \times 2)\), \((3 \times 3)\)</li>
+                            <li><strong>Extract:</strong> \(2 \times 2 \times 3\)</li>
+                            <li><strong>Result:</strong> <strong>12</strong>.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="method-box">
+                    <h3>Method B: Estimation (For Non-Perfect Squares)</h3>
+                    <p>Most numbers are not perfect squares. We estimate them by finding the perfect squares immediately above and below.</p>
+                    
+                    <div class="example">
+                        <h4>Task: Find \(\sqrt{50}\)</h4>
+                        <ul>
+                            <li><strong>Lower Bound:</strong> \(\sqrt{49} = 7\).</li>
+                            <li><strong>Upper Bound:</strong> \(\sqrt{64} = 8\).</li>
+                            <li><strong>Logic:</strong> Since 50 is very close to 49, the square root is just slightly more than 7.</li>
+                            <li><strong>Estimate:</strong> \(\approx 7.1\).</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <h2 id="section-5">5. Properties and Rules</h2>
+                
+                <div class="properties-box">
+                    <h3>Product Property:</h3>
+                    <p>You can split a root into two factors.</p>
+                    <ul>
+                        <li>\(\sqrt{a \times b} = \sqrt{a} \times \sqrt{b}\)</li>
+                        <li><strong>Example:</strong> \(\sqrt{18} = \sqrt{9 \times 2} = \sqrt{9} \times \sqrt{2} = 3\sqrt{2}\).</li>
+                    </ul>
+                    
+                    <h3>Quotient Property:</h3>
+                    <p>You can split a root in a fraction.</p>
+                    <ul>
+                        <li>\(\sqrt{\frac{a}{b}} = \frac{\sqrt{a}}{\sqrt{b}}\)</li>
+                        <li><strong>Example:</strong> \(\sqrt{\frac{25}{4}} = \frac{5}{2}\).</li>
+                    </ul>
+                    
+                    <h3>Special Cases:</h3>
+                    <ul>
+                        <li><strong>The "Zero" Rule:</strong> \(\sqrt{0} = 0\).</li>
+                        <li><strong>The "One" Rule:</strong> \(\sqrt{1} = 1\).</li>
+                    </ul>
+                </div>
+                
+                <h2 id="section-6">6. Common Misconceptions</h2>
+                
+                <div class="misconception">
+                    <div class="misconception-title">\(\sqrt{x + y} = \sqrt{x} + \sqrt{y}\) (The "Split" Error)</div>
+                    <p><strong>Mistake:</strong> Thinking \(\sqrt{9 + 16} = \sqrt{9} + \sqrt{16} = 3 + 4 = 7\).</p>
+                    <p><span class="reality">Reality:</span> \(\sqrt{9 + 16} = \sqrt{25} = 5\).</p>
+                    <p><strong>Lesson:</strong> You cannot split addition or subtraction under a radical.</p>
+                </div>
+                
+                <div class="misconception">
+                    <div class="misconception-title">Confusing Square Root with Halving</div>
+                    <p><strong>Mistake:</strong> Thinking \(\sqrt{50} = 25\).</p>
+                    <p><span class="reality">Reality:</span> \(\sqrt{50} \approx 7.07\). Halving divides by 2; rooting finds the base factor.</p>
+                </div>
+                
+                <div class="misconception">
+                    <div class="misconception-title">The Negative Root</div>
+                    <p><span class="note">Note:</span> The equation \(x^2 = 25\) has two solutions: \(x = 5\) and \(x = -5\). However, the expression \(\sqrt{25}\) asks only for the Principal (positive) root.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script>
+        // Smooth scrolling for sidebar links
+        document.querySelectorAll('.sidebar a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remove active class from all links
+                document.querySelectorAll('.sidebar a').forEach(link => {
+                    link.classList.remove('active');
+                });
+                
+                // Add active class to clicked link
+                this.classList.add('active');
+                
+                // Smooth scroll to target
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Update active link on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('h2[id]');
+            let currentSection = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (window.pageYOffset >= sectionTop - 150) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            
+            document.querySelectorAll('.sidebar a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
